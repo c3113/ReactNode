@@ -1,0 +1,39 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: ext.chenkai9
+ * @Date: 2022-05-25 22:08:20
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数式组件</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="containter"></div>
+    <script type='text/babel'>
+        //1. 定义一个组件（函数式）
+        function MyComponent(){
+            //此处的this是undefined，因为经过babel翻译，开启了严格模式，严格模式未指定this，则为undefined
+            //函数组件是丢失this的，所以说函数组件是天生残疾
+            //this丢失了，只能定义一些简单的组件
+            console.log(this)
+            return <h1>我是用函数定义的组件</h1>
+        }
+        //2. 渲染组件到页面
+        ReactDOM.render(<MyComponent/>, document.getElementById('containter'))
+        /**
+         *  执行了ReactDOM.render(...)后发生了什么？
+         *  1. React解析组件标签，寻找组件定义的位置
+         *  2. React发现组件是用函数定义的，随后React去直接调用MyComponent函数，将返回的虚拟DOM渲染到页面
+         * 
+         * */
+    </script>
+</body>
+</html>
